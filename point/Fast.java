@@ -1,13 +1,13 @@
+// test file: http://coursera.cs.princeton.edu/algs4/testing/collinear-testing.zip
+
 import java.util.Arrays;
 
 public class Fast {
     // print Point p and Points[start] to Points[end-1]
     private static void printAndDraw(Point p, Point[] points, int start, int end) {
         StdOut.print(p + " -> ");
-        p.draw();
         for (int i = start; i < end - 1; i++) {
             StdOut.print(points[i] + " -> ");
-            p.drawTo(points[i]);
         }
 
         StdOut.println(points[end - 1]);
@@ -61,6 +61,7 @@ public class Fast {
             int y = in.readInt();
             points[i] = new Point(x, y);
             aux[i] = new Point(x, y);
+            points[i].draw();
         }
 
         // sort the points

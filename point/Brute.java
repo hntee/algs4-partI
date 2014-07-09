@@ -1,3 +1,5 @@
+// test file: http://coursera.cs.princeton.edu/algs4/testing/collinear-testing.zip
+
 import java.util.Arrays;
 
 public class Brute {
@@ -13,10 +15,15 @@ public class Brute {
             int x = in.readInt();
             int y = in.readInt();
             points[i] = new Point(x, y);
+            points[i].draw();
         }
 
         // sort the points
         Arrays.sort(points, 0, N);
+
+        StdDraw.setXscale(0, 32768);
+        StdDraw.setYscale(0, 32768);
+
 
         for (int i = 0; i < N - 3; i++)
             for (int j = i + 1; j < N - 2; j++)
@@ -31,6 +38,8 @@ public class Brute {
                         StdOut.print(points[j] + " -> ");
                         StdOut.print(points[k] + " -> ");
                         StdOut.print(points[p] + "\n");
+
+                        points[i].drawTo(points[p]);
                     }
     }
 }
