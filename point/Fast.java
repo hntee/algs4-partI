@@ -2,11 +2,16 @@ import java.util.Arrays;
 
 public class Fast {
     // print Point p and Points[start] to Points[end-1]
-    private static void print(Point p, Point[] points, int start, int end) {
+    private static void printAndDraw(Point p, Point[] points, int start, int end) {
         StdOut.print(p + " -> ");
-        for (int i = start; i < end - 1; i++)
+        p.draw();
+        for (int i = start; i < end - 1; i++) {
             StdOut.print(points[i] + " -> ");
+            p.drawTo(points[i]);
+        }
+
         StdOut.println(points[end - 1]);
+        p.drawTo(points[end - 1]);
     }
 
     // check if a point is the least element in a set of
@@ -35,6 +40,12 @@ public class Fast {
     }
 
     public static void main(String[] args) {
+        StdDraw.setXscale(0, 32768);
+        StdDraw.setYscale(0, 32768);
+
+        //StdDraw.setXscale(0, 15);
+        //StdDraw.setYscale(-10, 10);
+
         final int N = StdIn.readInt();
         Point[] points = new Point[N];
 
@@ -64,14 +75,14 @@ public class Fast {
                     count++;
                 } else {
                     if (count >= 3 && isLeast(points[i], points, points[i].slopeTo(points[j - 1]))) {
-                        print(points[i], points, start, start + count);
+                        printAndDraw(points[i], points, start, start + count);
                     }
                     start = j;
                     count = 1;
                 }
 
                 if (j == N - 1 && count >= 3 && isLeast(points[i], points, points[i].slopeTo(points[j - 1])))
-                    print(points[i], points, start, start + count);
+                    printAndDraw(points[i], points, start, start + count);
             }
             
 
