@@ -46,16 +46,19 @@ public class Fast {
         //StdDraw.setXscale(0, 15);
         //StdDraw.setYscale(-10, 10);
 
-        final int N = StdIn.readInt();
-        Point[] points = new Point[N];
+        // read in the input
+        String filename = args[0];
+        In in = new In(filename);
+        int N = in.readInt();
 
+        Point[] points = new Point[N];
         // an auxiliary array
         Point[] aux = new Point[N];
 
         // read the points
         for (int i = 0; i < N; i++) {
-            int x = StdIn.readInt();
-            int y = StdIn.readInt();
+            int x = in.readInt();
+            int y = in.readInt();
             points[i] = new Point(x, y);
             aux[i] = new Point(x, y);
         }
