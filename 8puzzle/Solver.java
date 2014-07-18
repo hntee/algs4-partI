@@ -13,6 +13,9 @@ public class Solver {
         MinPQ<SearchNode> minPQ = new MinPQ<SearchNode>();
         MinPQ<SearchNode> minPQTwin = new MinPQ<SearchNode>();
 
+        // create two search trees, one is the original board, 
+        // the other is its twin,
+        // only one of them can terminate
         SearchNode currentSearchNode = new SearchNode(initial, null);
         SearchNode currentSearchNodeTwin = new SearchNode(twin, null);
 
@@ -27,6 +30,8 @@ public class Solver {
             currentSearchNodeTwin = minPQTwin.delMin();
             solutionQueue.enqueue(currentSearchNode.board);
 
+            // iterate through its neighbors, if it is not the same as its parent,
+            // insert it to the priority queue
             for (Board neighbor : currentSearchNode.board.neighbors()) {
                 SearchNode neighborNode = new SearchNode(neighbor, currentSearchNode);
                 if (currentSearchNode.previous == null || !neighbor.equals(currentSearchNode.previous.board))
