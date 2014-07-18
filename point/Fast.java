@@ -3,6 +3,7 @@
 import java.util.Arrays;
 
 public class Fast {
+    private final static int DELAY = 200;
     // print Point p and Points[start] to Points[end-1]
     private static void printAndDraw(Point p, Point[] points, int start, int end) {
         StdOut.print(p + " -> ");
@@ -52,21 +53,19 @@ public class Fast {
         int N = in.readInt();
 
         Point[] points = new Point[N];
-        // an auxiliary array
-        Point[] aux = new Point[N];
 
         // read the points
         for (int i = 0; i < N; i++) {
             int x = in.readInt();
             int y = in.readInt();
             points[i] = new Point(x, y);
-            aux[i] = new Point(x, y);
             points[i].draw();
         }
 
         // sort the points
         Arrays.sort(points, 0, N);
-        Arrays.sort(aux, 0, N);
+
+        Point[] aux = points.clone();
 
         for (int i = 0; i < N - 3; i++) {
             // sort in slope
@@ -91,8 +90,14 @@ public class Fast {
             
 
             // copy aux back to points
+            /*
             for (int q = 0; q < points.length; q++)
                 points[q] = aux[q];
+            */
+
+            points = aux.clone();
+
+
 
             /*
             // print the points
